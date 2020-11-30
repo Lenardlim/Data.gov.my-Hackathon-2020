@@ -1,0 +1,54 @@
+    <ons-page class="page-bg-color">
+      <!-- <ons-toolbar>
+        <div class="left">
+          <ons-back-button>Back</ons-back-button>
+        </div>
+        <div class="center">Navigation</div>
+      </ons-toolbar>
+
+      <section style="padding: 10px">
+        <ons-button ng-click="navi.pushPage('page.html')">
+          Push Page
+        </ons-button>
+
+        <p>
+          You have pushed {{ app.pushes }} times and popped {{ app.pops }} times.
+        </p>
+      </section> -->
+
+
+
+    <section>
+        <h1>
+          <b ng-click="navi.popPage()">Lestari</b>
+          <div style="display:none" class="title-sub" ng-click="navi.pushPage('page/1_login.html')">Sign Up</div>
+          <img class="user-icon" src="img/landing/user-icon.svg" ng-click="navi.pushPage('page/1_login.html')">
+        </h1>
+    </section>
+
+
+    <section>
+
+      <div ng-repeat="i in menu" class="card-custom"  ng-click="navi.pushPage(i.page).then(i.trigger)" style="background-image:url({{i.img2}})">
+        <div class="card-top">
+        <h3><b>{{i.title}}</b></h3>
+        </div>
+
+        <div class="card-btm">
+
+            <div class="card-btm-left">
+              {{i.desc}}
+            </div>
+
+            <div class="card-btm-right">
+                <img src="img/right-arrow.svg">
+            </div>
+
+        </div>
+      </div>
+
+
+    </section>
+
+
+    </ons-page>

@@ -1,0 +1,80 @@
+    <ons-page class="page-bg-color">
+
+      <div class="back-arrow back-arrow-product" ng-click="navi.popPage()">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#fff" d="M295.515 115.716l-19.626 19.626c-4.753 4.753-4.675 12.484.173 17.14L356.78 230H12c-6.627 0-12 5.373-12 12v28c0 6.627 5.373 12 12 12h344.78l-80.717 77.518c-4.849 4.656-4.927 12.387-.173 17.14l19.626 19.626c4.686 4.686 12.284 4.686 16.971 0l131.799-131.799c4.686-4.686 4.686-12.284 0-16.971L312.485 115.716c-4.686-4.686-12.284-4.686-16.97 0z"></path></svg>
+      <svg class="back-btn-shadow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#000" d="M295.515 115.716l-19.626 19.626c-4.753 4.753-4.675 12.484.173 17.14L356.78 230H12c-6.627 0-12 5.373-12 12v28c0 6.627 5.373 12 12 12h344.78l-80.717 77.518c-4.849 4.656-4.927 12.387-.173 17.14l19.626 19.626c4.686 4.686 12.284 4.686 16.971 0l131.799-131.799c4.686-4.686 4.686-12.284 0-16.971L312.485 115.716c-4.686-4.686-12.284-4.686-16.97 0z"></path></svg>
+      </div>
+
+      <!-- <img class="back-arrow back-arrow-product" src="img/right-arrow.svg"  ng-click="navi.popPage()"> -->
+      <ons-carousel  class="listing-img-cont" swipeable auto-scroll overscrollable id="carousel">
+          <ons-carousel-item ng-repeat="(k,i) in currStore.img" style="background-image:url({{i}})">
+
+            <!-- <div style="text-align: center; font-size: 30px; margin-top: 20px; color: #fff;">
+
+            </div> -->
+          </ons-carousel-item>
+        </ons-carousel>
+
+
+    <section class="listing-goals-cont">
+        <div class="listing-company-cont" ng-click="navi.pushPage('page/5_1_company.html')">
+
+          <div class="listing-company-score">
+            {{currStore.score}}
+            <img src="img/goal-icon.png">
+          </div>
+
+          <div class="listing-company">
+            {{currStore.name}}
+          </div>
+
+          <div class="listing-company-desc">
+            {{currStore.desc}}
+          </div>
+        </div>
+
+      <div class="listing-goals-subcont" ng-repeat="i in currStore.sdg_arr | orderBy">
+        <img class="listing-goals listing-goals-shadow" src="img/goals/{{i}}.svg">
+        <img class="listing-goals" src="img/goals/{{i}}.svg">
+        <div class="listing-goals-desc">
+          <div class="listing-sdg-title">{{sdgs[i-1].name}}</div>
+          {{sdgs[i-1].desc}}
+        </div>
+        <div class="listing-goals-score">{{sdgs[i-1].score}}
+        </div>
+      </div>
+
+    </section>
+
+    <section>
+        <h3>Buy Sustainable</h3>
+    </section>
+
+
+    <section>
+    <div class="listing-tile-half" ng-repeat="i in co_products">
+            <div class="listing-img" ng-click="navi.pushPage('page/4_1_listing.html').then(app.loadProduct(i))"  style="background-image:url({{i.first_thumb}})">
+
+            </div>
+            <div class="listing-desc">
+              <div class="listing-title">{{i.name}}
+                <br><span class="listing-city">{{storeLookup[i.store].name}}</span>
+              </div>
+
+              <div class="listing-price">RM{{i.price}}</div>
+            </div>
+
+            <span class="listing-stars">
+            &#9733;&#9733;&#9733;&#9733;&#9733;
+            </span>
+
+            <span class="listing-score listing-score-tile"> {{storeLookup[i.store].sdg_arr.length}} Goals &#10003;</span>
+        </div>
+
+
+
+    </section>
+
+
+
+    </ons-page>

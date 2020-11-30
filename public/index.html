@@ -1,0 +1,302 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src * data: gap: https://ssl.gstatic.com; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+
+    <link rel="stylesheet" href="components/loader.css">
+  <link rel="stylesheet" href="lib/onsenui/css/onsenui.css">
+  <link rel="stylesheet" href="lib/onsenui/css/onsen-css-components.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="lib/flipcounter/flip.min.css">
+  <script src="components/loader.js"></script>
+  <script src="lib/angular/angular.min.js"></script>
+  <!-- <script src="lib/onsenui/js/onsenui.min.js"></script> -->
+  <!-- <script src="lib/onsenui/js/angular-onsenui.min.js"></script> -->
+  <script src="lib-2019/onsenui.min.js"></script>
+  <script src="lib-2019/angular-onsenui.min.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/angularjs-onsenui@1.0.1/dist/angularjs-onsenui.min.js"></script> -->
+<script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-storage.js"></script>
+<script src="js/firebase.js"></script>
+<script src="js/marketplace.js"></script>
+
+
+  <script>
+      ons.platform.select('android')
+      ons.bootstrap()
+      .filter('selectedTags', function() {
+          return function(tasks, tags) {
+              return tasks.filter(function(task) {
+                try{
+                  for (var i in task.sdg_arr) {
+                      if (tags.indexOf(task.sdg_arr[i]) != -1) {
+                          return true;
+                      }
+                  }
+                  return false;
+                }catch(e){
+                  return true
+                }
+        });
+    };
+  })
+      .controller('AppController', function($scope) {
+        $scope.activeTag=null;
+        var myService=this;
+        myService.loadMarket=function(){
+          // alert("Getting products")
+          promiseCollection("product").then(function(data){
+              var list=[]
+              data.forEach((d)=>{
+                var x=d.data()
+                var y=x.img;
+                x.first_thumb=y[Object.keys(y)[0]]
+                x.img_len=Object.keys(y).length;
+                if(x.img_default){
+                  x.first_thumb=y[x.img_default]
+                }
+                list.push(x)
+              })
+              // console.log(list)
+              $scope.products=list;
+              $scope.$apply()
+          })
+        }
+       myService.loadMarket()
+
+        //Menu
+        var menu=[
+          {
+            desc:"To take action, it is firstly important to understand Malaysia's progress in sustainable development goals",
+            img:"https://www.createdigital.org.au/wp-content/uploads/2019/04/university-rankings-against-the-Sustainable-Development-Goals.jpg",
+            img2:"img/landing/bg3.jpg",
+            page:'page/3_0_dashboard.html',
+            title:'Lestari Kini'
+          },
+          {
+            desc:"Drive sustainable innovation by buying products and services from companies supporting sustainable goals",
+            img2:"img/landing/bg2.jpg",
+            img:"https://specials-images.forbesimg.com/imageserve/1208790371/960x0.jpg?fit=scale",
+            page:'page/4_0_ecomm.html',
+            title:'Lestari Bazaar',
+            trigger: '',
+          },
+          {
+            desc:"Deep dive into data analytics and background of how companies are helping to achieve sustainable goals",
+            img2:"img/landing/bg1.jpg",
+            img:"https://cdn.boreal-is.com/data/uploads/2018/03/sustainability_report.jpg",
+            page:'page/5_0_company_search.html',
+            title:'Lestari Meter'
+          }
+        ]
+        $scope.menu=menu;
+
+        var sd=[
+          {score:158,scorePercent:81.0,db:"zC6fB",name:'No Poverty',id:'sdg1',desc:'End poverty in all its forms everywhere',achieve:"Poor Families Helped"},
+          {score:156,scorePercent:80.0,db:"BOChB",name:'Zero Hunger',id:'sdg2',desc:'End hunger, achieve food security and improved nutrition and promote sustainable agriculture',achieve:"Hungry People Fed"},
+          {score:127,scorePercent:65.1,db:"QWghB",name:'Good Health and Well Being',id:'sdg3',desc:'Ensure healthy lives and promote well-being for all at all ages',achieve:"Healthcare Sponsored"},
+          {score:137,scorePercent:70.3,db:"tWghB",name:'Quality Education',id:'sdg4',desc:'Ensure inclusive and equitable quality education and promote lifelong learning opportunities for all'},
+          {score:93,scorePercent:47.7,db:"IXghB",name:'Gender Equality',id:'sdg5',desc:'Achieve gender equality and empower all women and girls',achieve:"Women Helped"},
+          {score:156,scorePercent:80.0,db:"kp0hB",name:'Clean Water and Sanitation',id:'sdg6',desc:'Ensure availability and sustainable management of water and sanitation for all'},
+          {score:91,scorePercent:46.7,db:"zXghB",name:'Affordable And Clean Energy',id:'sdg7',desc:'Ensure access to affordable, reliable, sustainable and modern energy for all'},
+          {score:152,scorePercent:77.9,db:"lYghB",name:'Decent Work and Economic Growth',id:'sdg8',desc:'Promote sustained, inclusive and sustainable economic growth, full and productive employment and decent work for all',achieve:"Decent Work Hours Promoted"},
+          {score:148,scorePercent:75.9,db:"vaghB",name:'Industry, Innovation and Infrastructure',id:'sdg9',desc:'Build resilient infrastructure, promote inclusive and sustainable industrialization and foster innovation'},
+          {score:170,scorePercent:87.2,db:"EaghB",name:'Reduce Inequalities',id:'sdg10',desc:'Reduce inequality within and among countries'},
+          {score:155,scorePercent:79.5,db:"EcghB",name:'Sustainable Cities and Communities',id:'sdg11',desc:'Make cities and human settlements inclusive, safe, resilient and sustainable'},
+          {score:157,scorePercent:80.5,db:"XcghB",name:'Responsible Consumption and Production',id:'sdg12',desc:'Ensure sustainable consumption and production patterns'},
+          {score:153,scorePercent:78.5,db:"vcghB",name:'Climate Action',id:'sdg13',desc:'Take urgent action to combat climate change and its impacts',achieve:"KG CO2 Saved"},
+          {score:104,scorePercent:53.3,db:"WeghB",name:'Life Below Water',id:'sdg14',desc:'Conserve and sustainably use the oceans, seas and marine resources for sustainable development'},
+          {score:130,scorePercent:66.7,db:"keghB",name:'Life on Land',id:'sdg15',desc:'Protect, restore and promote sustainable use of terrestrial ecosystems, sustainably manage forests, combat desertification, and halt and reverse land degradation and halt biodiversity loss',achieve:"Acre Land Saved"},
+          {score:90,scorePercent:46.2,db:"yeghB",name:'Peace, Justic, and Strong Institutions',id:'sdg16',desc:'Promote peaceful and inclusive societies for sustainable development, provide access to justice for all and build effective, accountable and inclusive institutions at all levels'},
+          {score:131,scorePercent:67.2,db:"9eghB",name:'Partnerships for the Goals',id:'sdg17',desc:'Strengthen the means of implementation and revitalize the global partnership for sustainable development'}
+        ]
+        var sdg_lookup={}
+        for(var i=0;i<17;i++){
+          sdg_lookup[sd[i].id]=sd[i]
+        }
+        $scope.sdgs=sd;
+
+
+
+        this.loadProduct=function(i){
+          // alert("hello!")
+            $scope.currProduct=i;;
+            $scope.currStore=$scope.storeLookup[i.store];
+
+        }
+
+
+        this.setCurrGoal=function(i){
+          var base="https://datastudio.google.com/embed/reporting/9cff84a2-5b41-4dc4-b114-05e34204ac18/page/"
+          $scope.sdg_page=base+$scope.sdgs[i-1].db;
+          // alert(i)
+          setTimeout(function(){
+            document.getElementById("analytics-iframe").src=$scope.sdg_page
+          },500)
+
+        }
+
+        this.getStore=function(){
+          promiseCollection("store").then(function(data){
+            var list=[]
+            var stores={}
+            data.forEach(function(d){
+                var x=d.data();
+                try{
+                  var score=0
+                  x.sdg_arr=[]
+                  for(k in x.sdg){
+                    if(x.sdg[k]){
+                      x.sdg_arr.push(Number(k.replace("sdg","")))
+                      score+=sdg_lookup[k].score;
+                    }
+                  }
+                  x.score=score;
+
+                }catch(e){}
+
+                try{
+                x.img_default=x.thumb[Object.keys(x.thumb)[0]]
+                }catch(e){}
+
+
+                stores[d.id]=x;
+                x.id=d.id;
+                list.push(x)
+            })
+            $scope.stores=list;
+            $scope.storeLookup=stores;
+            $scope.$apply();
+          })
+        }
+        this.getStore();
+
+        this.setCurrCompany=function(i){
+          $scope.currStore=i;
+
+          var co_products=[];
+          var t=$scope.products;
+          for(var j=0;j<t.length;j++){
+            if(t[j].store==i.id){
+              co_products.push(t[j])
+            }
+          }
+          $scope.co_products=co_products;
+        }
+
+        $scope.activeTagName="Lestari"
+        this.setActiveSearchTag=function(input){
+          if(!input){
+            $scope.activeTag=null;
+            $scope.activeTagNum=null;
+            $scope.activeTagName="Lestari"
+          }else{
+            $scope.activeTagNum=input;
+            $scope.activeTag="sdg"+input;
+            $scope.activeTagName=sdg_lookup["sdg"+input].desc;
+          }
+        }
+
+        $scope.personalGoals={
+            "sdg1":10,
+            "sdg2":0,
+            "sdg3":0,
+            "sdg4":0,
+            "sdg5":0,
+            "sdg6":0,
+            "sdg7":0,
+            "sdg8":0,
+            "sdg9":0,
+            "sdg10":0,
+            "sdg11":0,
+            "sdg12":0,
+            "sdg13":0,
+            "sdg14":0,
+            "sdg15":0,
+            "sdg16":0,
+            "sdg17":0
+          }
+
+        this.addScore=function(){
+          var list=$scope.currStore.sdg_arr;
+          // console.log(list)
+          for(var i=0;i<list.length;i++){
+            $scope.personalGoals['sdg'+list[i]]+=Math.floor(Math.random() * (9 - 1 + 1)) + 1;
+          }
+        }
+
+        this.checkout=function(){
+          alert("Thank you for being sustainable!")
+        }
+  });
+
+    //Ready function
+    ons.ready(function() {
+        console.log("Onsen UI is ready!");
+
+        //Back button handler only works on OnsenUI 2.8
+        document.addEventListener("backbutton", onBackKeyDown, false);
+        function onBackKeyDown() {
+        }
+    });
+
+    //iPhoneX Notch Handler
+    if (ons.platform.isIPhoneX()) {
+      document.documentElement.setAttribute('onsflag-iphonex-portrait', '');
+      document.documentElement.setAttribute('onsflag-iphonex-landscape', '');
+    }
+
+  </script>
+</head>
+<body>
+  <ons-navigator var="navi" page="page/0_splash.html" ng-controller="AppController as app" swipeable="force" swipe-target-width="150px"></ons-navigator>
+<!--
+    swipe-threshold="0.5">
+ -->
+ <script
+   src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+   integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
+   crossorigin="anonymous"></script>
+     <script src="lib/flipcounter/flip.min.js"></script>
+   <script type="text/javascript">
+   	//<![CDATA[
+    //http://demo.cnanney.com/apple-counter-revisited/
+
+    var myCounter;
+    function stopCounter(){
+      var total=myCounter.getValue()
+      myCounter.setIncrement(-Math.round(total/100))
+      myCounter.setPace(75);
+      setTimeout(function(){
+        myCounter.setAuto(false);
+        myCounter.setValue(0)
+      },5000)
+    }
+
+    function startCounter(){
+      setTimeout(function(){
+       		// Initialize a new counter
+       		myCounter=new flipCounter('flip-counter', {value:1860176, inc:17, pace:600, auto:true});
+      },1000)
+    }
+
+    function resetCounter(){
+      location.reload();
+    }
+
+   	$(function(){
+      startCounter()
+   	});
+
+   	//]]>
+   	</script>
+    <script>
+
+    </script>
+</body>
+</html>

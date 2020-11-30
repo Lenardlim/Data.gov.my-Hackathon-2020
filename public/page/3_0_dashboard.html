@@ -1,0 +1,26 @@
+    <ons-page class="page-bg-color" id="page-dashboard">
+
+    <section>
+        <h1>
+          <img class="back-arrow" src="img/right-arrow-black.svg"  ng-click="navi.popPage()">
+        <b>Lestari Kini</b>
+        </h1>
+    </section>
+
+
+  <img style="width:100%" src="img/meter_small.png">
+
+  <h3 class="sub-title">Malaysia 17 Sustainable Development Goals </h3>
+
+  <div class="listing-goals-subcont" ng-repeat="i in [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17]" ng-click="navi.pushPage('page/3_1_analytics.html'); app.setCurrGoal(i)">
+    <img class="listing-goals listing-goals-shadow" src="img/goals/{{i}}.svg">
+    <img class="listing-goals" src="img/goals/{{i}}.svg">
+    <div class="listing-goals-desc">
+      <div class="listing-sdg-title">{{sdgs[i-1].name}}</div>
+      {{sdgs[i-1].desc}}
+    </div>
+    <div class="listing-goals-score">{{sdgs[i-1].scorePercent}}
+    </div>
+  </div>
+
+    </ons-page>

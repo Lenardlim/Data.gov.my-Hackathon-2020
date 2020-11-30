@@ -1,0 +1,27 @@
+    <ons-page class="page-bg-color">
+
+      <section>
+          <h1>
+            <img class="back-arrow" src="img/right-arrow-black.svg"  ng-click="navi.popPage()">
+          <b>My Lestari</b>
+          </h1>
+      </section>
+
+
+
+    <section>
+
+
+        <div class="listing-goals-subcont" ng-repeat="i in sdgs track by $index" ng-if="i.achieve">
+          <img class="listing-goals" src="img/personal/{{$index+1}}.png">
+          <div class="listing-goals-desc">
+            <div class="personal-achievement">{{i.achieve}}</div>
+          </div>
+          <div class="listing-goals-score-personal">{{personalGoals['sdg'+($index+1)]}}
+          </div>
+        </div>
+
+    </section>
+
+
+    </ons-page>
