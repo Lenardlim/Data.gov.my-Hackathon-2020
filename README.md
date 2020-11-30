@@ -2,10 +2,10 @@
  My team's submission was awarded as the Champion for this competition.
  <img src ='https://github.com/Lenardlim/lestari/blob/master/MAMPU%20Hackathon.png'> 
  
- Some press relating to the event:
-Berita Harian: https://www.bharian.com.my/bisnes/teknologi/2020/11/760074/bhplus
-Malay Mail: https://www.malaymail.com/news/malaysia/2020/11/30/public-sector-managed-to-leverage-on-technology-to-cope-with-covid-19-pande/1927549
-Bernama: https://bernama.com/en/general/news_covid-19.php?id=1907174
+ Some press relating to the event:<br>
+Berita Harian: https://www.bharian.com.my/bisnes/teknologi/2020/11/760074/bhplus <br>
+Malay Mail: https://www.malaymail.com/news/malaysia/2020/11/30/public-sector-managed-to-leverage-on-technology-to-cope-with-covid-19-pande/1927549<br>
+Bernama: https://bernama.com/en/general/news_covid-19.php?id=1907174<br>
 Bernama article is also saved as pdf above
  
 
