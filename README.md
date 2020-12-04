@@ -2,9 +2,9 @@
  My team's submission was awarded as the Champion for this competition, which was aimed at using the government's publicly available data at data.gov.my to address the UN Sustainable Development Goal (SDG). <br><br>
  
 Our app, Lestari ("Sustainable" in Malay), consists of 3 main modules:
-1 - Lestari Kini -  Sustainable Analytics Dashboard to display Malaysia's rankings for each of the SDG and their various measurement KPIs.
-2 - Lestari Bazaar - Sustainable Marketplace to allow SMEs to list their products. 
-3 - Lestari Meter - Sustainable Business Analytics to measure each listing SME's scorecard to see what SDGs they are contributing to.
+<br>1 - Lestari Kini -  Sustainable Analytics Dashboard to display Malaysia's rankings for each of the SDG and their various measurement KPIs.
+<br>2 - Lestari Bazaar - Sustainable Marketplace to allow SMEs to list their products. 
+<br>3 - Lestari Meter - Sustainable Business Analytics to measure each listing SME's scorecard to see what SDGs they are contributing to.
 
 There is also a module showcasing each buyer's contribution towards each SDG in their own way. 
 <br>Eg: RM 150 in purchase in companies that are contributing toward the SDG 1 - No Poverty will mean feeding 1 low income household for a month.
