@@ -1,6 +1,7 @@
 # Updated 30 Nov 2020
  My team's submission was awarded as the Champion for this competition.
  <img src ='https://github.com/Lenardlim/lestari/blob/master/MAMPU%20Hackathon.png'> 
+ <img src ='https://github.com/Lenardlim/lestari_2020/blob/master/lestari%20image.jpg'>
  
  Some press relating to the event:<br>
 Berita Harian: https://www.bharian.com.my/bisnes/teknologi/2020/11/760074/bhplus <br>
