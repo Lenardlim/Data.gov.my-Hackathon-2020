@@ -15,6 +15,7 @@ Our platform aims to connect government agencies and companies to sustainable SM
  <img src ='https://github.com/Lenardlim/lestari_2020/blob/master/lestari%20image.jpg'>
  
 Some press relating to the event:<br>
+Malaysia Government Communication Department website: https://www.komunikasi.gov.my/awam/berita/233-kkd-news/18163-bernama-30-nov-2020-public-sector-leverages-well-on-technology-during-pandemic <br>
 Berita Harian: https://www.bharian.com.my/bisnes/teknologi/2020/11/760074/bhplus <br>
 Malay Mail: https://www.malaymail.com/news/malaysia/2020/11/30/public-sector-managed-to-leverage-on-technology-to-cope-with-covid-19-pande/1927549<br>
 Bernama: https://bernama.com/en/general/news_covid-19.php?id=1907174<br>
